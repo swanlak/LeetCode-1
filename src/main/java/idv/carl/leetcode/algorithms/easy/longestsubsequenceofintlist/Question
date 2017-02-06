@@ -1,0 +1,7 @@
+Longest Subsequence of An Integer List:
+
+Given a list of non-negative integer numbers (n >= 0), please find the longest subsequence.
+Notice that 0 should not belongs to any subsequence.
+
+e.g.: [1,2,3,0,2,3,4,6,2,0,4,1,5,6,3,5,3,4,5,0,1,2]
+output: 4,1,5,6,3,5,3,4,5

@@ -1,0 +1,9 @@
+Show Power of Two:
+
+Given a list of numbers in an array, determine if each number is a power of 2.
+
+e.g.:
+input[] = {1, 7, 9, 4, 8, 13, 32}
+output: 1 is 2^0, 4 is 2^2, 8 is 2^3, 32 is 2^5
+
+Note: This is the 2016 interview question of Nogle TW (Junior Java Developer).
