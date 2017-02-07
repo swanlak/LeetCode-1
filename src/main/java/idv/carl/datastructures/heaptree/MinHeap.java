@@ -9,6 +9,7 @@ public class MinHeap {
     private Integer[] heap;
     private Integer size;
     private Integer maxsize;
+    private Integer elementCount = 0;
 
     public MinHeap(int maxsize) {
         this.maxsize = maxsize;
@@ -36,12 +37,8 @@ public class MinHeap {
 
         minHeap.minHeap();
         minHeap.print();
-        System.out.println("The min value of the heap is: " + minHeap.remove());
-        minHeap.print();
-        System.out.println("The min value of the heap is: " + minHeap.remove());
-        minHeap.print();
-        System.out.println("The min value of the heap is: " + minHeap.remove());
-        minHeap.print();
+        minHeap.heapSort();
+
     }
 
     private int parent(int position) {
@@ -86,6 +83,7 @@ public class MinHeap {
 
     public void insert(int element) {
         heap[++size] = element;
+        elementCount++;
         int current = size;
 
         while (heap[current] < heap[parent(current)]) {
@@ -115,9 +113,17 @@ public class MinHeap {
         Integer popped = heap[FRONT];
         heap[FRONT] = heap[size];
         heap[size] = null;
-        size--;
         minHeapify(FRONT);
+        size--;
         return popped;
+    }
+
+    public void heapSort() {
+        String result = "";
+        for (int i = 0; i < elementCount; i++) {
+            result = result.concat(" ").concat(String.valueOf(remove()));
+        }
+        System.out.println("Heap Sort Result: " + result);
     }
 
 }
