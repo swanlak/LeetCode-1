@@ -5,15 +5,15 @@ package idv.carl.datastructures.heaptree;
  */
 public class MinHeap {
 
-    private final static int FRONT = 1;
-    private int[] heap;
-    private int size;
-    private int maxsize;
+    private final static Integer FRONT = 1;
+    private Integer[] heap;
+    private Integer size;
+    private Integer maxsize;
 
     public MinHeap(int maxsize) {
         this.maxsize = maxsize;
         this.size = 0;
-        heap = new int[this.maxsize + 1];
+        heap = new Integer[this.maxsize + 1];
         heap[0] = Integer.MIN_VALUE;
     }
 
@@ -37,6 +37,11 @@ public class MinHeap {
         minHeap.minHeap();
         minHeap.print();
         System.out.println("The min value of the heap is: " + minHeap.remove());
+        minHeap.print();
+        System.out.println("The min value of the heap is: " + minHeap.remove());
+        minHeap.print();
+        System.out.println("The min value of the heap is: " + minHeap.remove());
+        minHeap.print();
     }
 
     private int parent(int position) {
@@ -63,7 +68,7 @@ public class MinHeap {
 
     private void minHeapify(int pos) {
         if (!isLeaf(pos)) {
-            if ((heap[pos] > heap[left(pos)]) || (heap[pos] > heap[right(pos)])) {
+            if (greaterThen(pos, left(pos)) || greaterThen(pos, right(pos))) {
                 if (heap[left(pos)] < heap[right(pos)]) {
                     swap(pos, left(pos));
                     minHeapify(left(pos));
@@ -73,6 +78,10 @@ public class MinHeap {
                 }
             }
         }
+    }
+
+    private boolean greaterThen(Integer pos, Integer pos2) {
+        return (pos2 == null) ? false : heap[pos] > heap[pos2];
     }
 
     public void insert(int element) {
@@ -87,7 +96,11 @@ public class MinHeap {
 
     public void print() {
         for (int i = 1; i <= size / 2; i++) {
-            System.out.print(" PARENT : " + heap[i] + " LEFT CHILD : " + heap[2 * i] + " RIGHT CHILD :" + heap[2 * i + 1]);
+            Integer parent = heap[i];
+            Integer left = heap[2 * i];
+            Integer right = heap[2 * i + 1];
+            System.out.print(" PARENT : " + parent + " LEFT CHILD : " + (left == null ? "" : left) + " RIGHT CHILD :"
+                    + (right == null ? "" : right));
             System.out.println();
         }
     }
@@ -98,9 +111,11 @@ public class MinHeap {
         }
     }
 
-    public int remove() {
-        int popped = heap[FRONT];
-        heap[FRONT] = heap[size--];
+    public Integer remove() {
+        Integer popped = heap[FRONT];
+        heap[FRONT] = heap[size];
+        heap[size] = null;
+        size--;
         minHeapify(FRONT);
         return popped;
     }

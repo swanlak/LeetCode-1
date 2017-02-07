@@ -88,8 +88,8 @@ public class HeapTreeDemo {
         heapSort(list);
         System.out.println(list);
 
-        // heapSort(list, HeapTreeDemo::descending);
-        // System.out.println(list);
+        heapSort(list, HeapTreeDemo::descending);
+        System.out.println(list);
     }
 
 }
