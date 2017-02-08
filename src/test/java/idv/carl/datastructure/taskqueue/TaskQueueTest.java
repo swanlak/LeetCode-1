@@ -55,6 +55,12 @@ public class TaskQueueTest {
         assertEquals(10, taskQueue.peekAll().size());
     }
 
+    @Test
+    public void testCapacity() {
+        addTasks(101, taskQueue);
+        assertEquals(taskQueue.getMaxCapacity(), taskQueue.count());
+    }
+
     private void addTasks(int taskNumber, TaskQueue taskQueue) {
         for (int i = 0; i < taskNumber; i++) {
             Task task = Task.getInstance();

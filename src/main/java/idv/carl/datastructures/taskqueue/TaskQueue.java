@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
  */
 public class TaskQueue {
 
+    private final static int MAX_CAPACITY = 100;
+
     private Queue<Task> tasks;
 
     public TaskQueue() {
@@ -17,8 +19,10 @@ public class TaskQueue {
     }
 
     public Task push(Task task) {
-        if (!this.tasks.offer(task)) {
+        if (isFull()) {
             System.out.println("Task queue is over capacity now, " + task.getTaskName() + " cannot be added to the queue.");
+        } else {
+            this.tasks.offer(task);
         }
         return task;
     }
@@ -46,6 +50,14 @@ public class TaskQueue {
     public int count() {
         // Returns the size of the queue
         return this.tasks.size();
+    }
+
+    public int getMaxCapacity() {
+        return MAX_CAPACITY;
+    }
+
+    private boolean isFull() {
+        return this.tasks.size() + 1 > MAX_CAPACITY;
     }
 
 }
