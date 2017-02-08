@@ -1,7 +1,9 @@
 package idv.carl.datastructures.taskqueue;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
+import java.util.stream.Collectors;
 
 /**
  * @author Carl Lu
@@ -31,18 +33,18 @@ public class TaskQueue {
         return this.tasks.peek();
     }
 
-    public Task[] peekAll() {
-        // Return null if our task queue is empty
+    public List<Task> peekAll() {
+        // Return null if the task queue is empty
         if (this.tasks.isEmpty()) {
             return null;
         }
 
-        // Return an array of task objects
-        return (Task[]) this.tasks.toArray();
+        // Return a list of task
+        return tasks.stream().collect(Collectors.toList());
     }
 
     public int count() {
-        // Returns the size of our queue
+        // Returns the size of the queue
         return this.tasks.size();
     }
 

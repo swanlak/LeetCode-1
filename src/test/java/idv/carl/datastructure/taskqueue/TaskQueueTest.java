@@ -1,5 +1,6 @@
 package idv.carl.datastructure.taskqueue;
 
+import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
@@ -28,12 +29,38 @@ public class TaskQueueTest {
 
     @Test
     public void testPush() {
-        for (int i = 0; i < 100; i++) {
+        int taskCount = 100;
+        addTasks(taskCount, taskQueue);
+        assertEquals(taskCount, taskQueue.count());
+    }
+
+    @Test
+    public void testPop() {
+        assertNull(taskQueue.pop());
+        addTasks(2, taskQueue);
+        assertEquals(Long.valueOf(1), taskQueue.pop().getId());
+        assertEquals(Long.valueOf(2), taskQueue.pop().getId());
+    }
+
+    @Test
+    public void testPeekNext() {
+        addTasks(2, taskQueue);
+        assertEquals(Long.valueOf(1), taskQueue.peekNext().getId());
+        assertEquals(Long.valueOf(1), taskQueue.peekNext().getId());
+    }
+
+    @Test
+    public void testPeekAll() {
+        addTasks(10, taskQueue);
+        assertEquals(10, taskQueue.peekAll().size());
+    }
+
+    private void addTasks(int taskNumber, TaskQueue taskQueue) {
+        for (int i = 0; i < taskNumber; i++) {
             Task task = Task.getInstance();
-            task.setId(Long.valueOf(i));
+            task.setId(Long.valueOf(i + 1));
             task.setTaskName("Push the ring.");
             taskQueue.push(task);
         }
-        assertEquals(100, taskQueue.count());
     }
 }
