@@ -5,26 +5,26 @@ package idv.carl.datastructures.stack;
  */
 public class Stack {
 
-    private int[] datas;
+    private int[] data;
     private int top = -1;
 
     public Stack(int length) {
-        datas = new int[length];
+        data = new int[length];
     }
 
-    public void push(int data) {
-        if (top < datas.length - 1) {
+    public void push(int element) {
+        if (top < this.data.length - 1) {
             top++;
-            datas[top] = data;
+            this.data[top] = element;
         }
     }
 
     public int pop() {
-        return datas[top--];
+        return data[top--];
     }
 
     public int peek() {
-        return datas[top];
+        return data[top];
     }
 
     public boolean isEmpty() {
@@ -32,7 +32,7 @@ public class Stack {
     }
 
     public boolean isFull() {
-        return top == datas.length - 1;
+        return top == data.length - 1;
     }
 
     public int size() {
