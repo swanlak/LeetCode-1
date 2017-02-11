@@ -1,4 +1,4 @@
-package idv.carl.datastructure;
+package idv.carl.datastructure.list;
 
 import static org.junit.Assert.assertEquals;
 
