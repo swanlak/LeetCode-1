@@ -1,13 +1,13 @@
 package idv.carl.datastructure.list;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import idv.carl.datastructures.list.OrderedLinkedList;
+import idv.carl.datastructures.list.SortByOrderedLinkedList;
 
 /**
  * @author Carl Lu
@@ -67,5 +67,14 @@ public class OrderedLinkedListTest {
         orderedLinkedList.remove(1);
         orderedLinkedList.remove(3);
         assertEquals(0, orderedLinkedList.getSize());
+    }
+
+    @Test
+    public void testSortByOrderedLinkedList() {
+        int[] input = new int[] {100, 52, 22, 35, 77, 1, 68, 87, 2};
+        SortByOrderedLinkedList sortByOrderedLinkedList = new SortByOrderedLinkedList();
+        int[] result = sortByOrderedLinkedList.sort(input);
+        int[] expected = new int[] {1, 2, 22, 35, 52, 68, 77, 87, 100};
+        assertArrayEquals(expected, result);
     }
 }
