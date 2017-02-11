@@ -17,19 +17,15 @@ public class LinkedList {
 
     public void insertTail(int id) {
         LinkedNode newNode = new LinkedNode(id);
-
         if (head == null) {
             head = newNode;
-            size++;
-            return;
+        } else {
+            LinkedNode tail = head;
+            while (tail.getNext() != null) {
+                tail = tail.getNext();
+            }
+            tail.setNext(newNode);
         }
-
-        LinkedNode tail = head;
-
-        while (tail.getNext() != null) {
-            tail = tail.getNext();
-        }
-        tail.setNext(newNode);
         size++;
     }
 
@@ -46,7 +42,7 @@ public class LinkedList {
 
     public LinkedNode find(int id) {
         LinkedNode node = head;
-        while (node.getId() != id) {
+        while (node != null && node.getId() != id) {
             if (node.getNext() == null) {
                 return null;
             } else {
