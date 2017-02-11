@@ -1,7 +1,6 @@
 package idv.carl.datastructure.list;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -70,6 +69,10 @@ public class DoubleLinkedListTest {
         assertEquals(3, doubleLinkedList.getSize());
         assertEquals(1, doubleLinkedList.removeTail().getId());
         assertEquals(2, doubleLinkedList.getSize());
+        doubleLinkedList.removeTail();
+        doubleLinkedList.removeTail();
+        assertNull(doubleLinkedList.peekHead());
+        assertTrue(doubleLinkedList.isEmpty());
     }
 
     @Test
@@ -81,12 +84,16 @@ public class DoubleLinkedListTest {
         assertEquals(4, doubleLinkedList.getSize());
         assertEquals(5, doubleLinkedList.remove(5).getId());
         assertEquals(3, doubleLinkedList.getSize());
+        assertEquals(99, doubleLinkedList.peekHead().getId());
         assertEquals(10, doubleLinkedList.remove(10).getId());
         assertEquals(2, doubleLinkedList.getSize());
         assertEquals(99, doubleLinkedList.removeHead().getId());
         assertEquals(1, doubleLinkedList.getSize());
         assertEquals(null, doubleLinkedList.remove(87));
         assertEquals(1, doubleLinkedList.getSize());
+        assertEquals(3, doubleLinkedList.remove(3).getId());
+        assertEquals(0, doubleLinkedList.getSize());
+        assertNull(doubleLinkedList.peekHead());
     }
 
     @Test
