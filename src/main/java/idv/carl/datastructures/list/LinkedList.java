@@ -85,6 +85,60 @@ public class LinkedList {
         return deleted;
     }
 
+    private LinkedNode reverseList(LinkedNode node) {
+        LinkedNode previous = null;
+        LinkedNode current = node;
+        LinkedNode next;
+
+        while (current != null) {
+            next = current.getNext();
+            current.setNext(previous);
+            previous = current;
+            current = next;
+        }
+
+        node = previous;
+        return node;
+    }
+
+    public LinkedNode reorderList(LinkedNode node) {
+        // Step1. Find the middle node bu using tortoise and hare algorithm
+        LinkedNode tortoise = node;
+        LinkedNode hare = tortoise.getNext();
+        while (hare != null && hare.getNext() != null) {
+            tortoise = tortoise.getNext();
+            hare = hare.getNext().getNext();
+        }
+
+        // Step2. Split the list into two parts
+        LinkedNode firstHead = node;
+        LinkedNode secondHead = tortoise.getNext();
+        tortoise.setNext(null);
+
+        secondHead = reverseList(secondHead);
+
+        node = new LinkedNode(0);
+
+        LinkedNode current = node;
+        while (firstHead != null || secondHead != null) {
+            // First, add the node of first part into the list
+            if (firstHead != null) {
+                current.setNext(firstHead);
+                current = current.getNext();
+                firstHead = firstHead.getNext();
+            }
+
+            // Then, add the node of second part into the list
+            if (secondHead != null) {
+                current.setNext(secondHead);
+                current = current.getNext();
+                secondHead = secondHead.getNext();
+            }
+        }
+        node = node.getNext();
+        return node;
+    }
+
     public void displayList() {
         LinkedNode tmp = head;
         while (tmp != null) {

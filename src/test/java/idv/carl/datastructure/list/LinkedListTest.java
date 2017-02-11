@@ -76,4 +76,19 @@ public class LinkedListTest {
         assertEquals(0, linkedList.getSize());
     }
 
+    @Test
+    public void testReorderFunction() {
+        linkedList.insertTail(1);
+        linkedList.insertTail(2);
+        linkedList.insertTail(3);
+        linkedList.insertTail(4);
+        linkedList.insertTail(5);
+        linkedList.reorderList(linkedList.find(1));
+        assertEquals(1, linkedList.removeHead().getId());
+        assertEquals(5, linkedList.removeHead().getId());
+        assertEquals(2, linkedList.removeHead().getId());
+        assertEquals(4, linkedList.removeHead().getId());
+        assertEquals(3, linkedList.removeHead().getId());
+    }
+
 }
