@@ -20,7 +20,6 @@ public class PriorityQueue {
             return;
         } else if (elementCount == 0) {
             queue[elementCount] = element;
-            elementCount++;
         } else {
             /*
              * If the queue is not empty, execute sorting before insert the element
@@ -34,8 +33,8 @@ public class PriorityQueue {
                 }
             }
             queue[i + 1] = element;
-            elementCount++;
         }
+        elementCount++;
     }
 
     public int remove() {

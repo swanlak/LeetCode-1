@@ -1,4 +1,9 @@
---Solution (MySQL)
+-- Solution (MySQL)
+--
+-- if(x, y, z)
+-- -> if() will return a number or string,
+--    if x is true(x != 0 && x != null), then return y, or return z
+--    you can see it as: x ? y : z
 
 select result.recipient from (
 		select  t.sender,
