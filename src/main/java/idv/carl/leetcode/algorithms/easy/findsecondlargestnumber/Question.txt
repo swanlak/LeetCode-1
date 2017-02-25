@@ -1,0 +1,6 @@
+Find the second largest number
+
+Given n positive numbers, please find the second largest number with O(n) time complexity.
+
+[10 ,10 ,9 ,5 ,6 ,1 ,2 ,3 ,7 ,7]
+-> 9
