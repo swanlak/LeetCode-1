@@ -1,4 +1,4 @@
-package idv.carl.sorting;
+package idv.carl.sorting.quicksort;
 
 import java.util.Arrays;
 
