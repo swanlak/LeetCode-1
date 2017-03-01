@@ -12,7 +12,7 @@ public class Solution {
         for (int number : input) {
             if (number >= largest) {
                 largest = number;
-            } else if (number > secondLargest) {
+            } else if (number >= secondLargest) {
                 secondLargest = number;
             }
         }
