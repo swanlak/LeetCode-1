@@ -7,7 +7,16 @@ import java.util.List;
  */
 public class RbTree {
 
+    private final int SUBSTITUTION_ID = -1;
+    private final int SUBSTITUTION_DATA = -1;
+
     private RbNode root;
+
+    /*
+     * We need this value because after delete the specified node, we need to know the
+     * successor(if existed) should be set as left node or right node of the parent node.
+     */
+    private boolean isLeft = true;
 
     /*
      * To search a node by id.
@@ -34,7 +43,7 @@ public class RbTree {
      */
     public void insert(int id, int data) {
         // Create a new node
-        RbNode newNode = new RbNode(id, data);
+        RbNode newNode = new RbNode(id, data, true);
 
         if (root == null) {
             root = newNode;
@@ -238,10 +247,12 @@ public class RbTree {
     public void preOrder(RbNode node) {
         if (node != null) {
             String pId = "";
-            if (node.getParent() != null) {
+            if (node.getParent() != null && !isEmptyNode(node.getParent())) {
                 pId += node.getParent().getId();
             }
-            System.out.println(node.getId() + ", is red: " + node.isRed() + ", parent id: " + pId);
+            if (node.getId() >= 0) {
+                System.out.println(node.getId() + ", is red: " + node.isRed() + ", parent id: " + pId);
+            }
             preOrder(node.getLeft());
             preOrder(node.getRight());
         }
@@ -316,57 +327,167 @@ public class RbTree {
         RbNode current = root;
         RbNode parent = root;
 
-        /*
-         * We need this value because after delete the specified node, we need to know the
-         * successor(if existed) should be set as left node or right node of the parent node.
-         */
-        boolean isLeft = true;
+        // The substitution of the deleted node
+        RbNode substitution = null;
 
-        while (current.getId() != key) {
-            parent = current;
-            if (current.getId() > key) {
-                isLeft = true;
-                current = current.getLeft();
-            } else if (current.getId() < key) {
-                isLeft = false;
-                current = current.getRight();
-            }
-            if (current == null) {
-                return false;
-            }
+        current = this.findOneNode(root, key);
+        if (current == null) {
+            return true;
         }
+        parent = current.getParent();
 
         // 2: If the node has no child
-        if (current.getLeft() == null && current.getRight() == null) {
+        if ((current.getLeft() == null || isEmptyNode(current.getLeft()))
+                && (current.getRight() == null || isEmptyNode(current.getRight()))) {
             hasNoChildren(parent, current, isLeft);
+            if (!current.isRed()) {
+                substitution = new RbNode(SUBSTITUTION_ID, SUBSTITUTION_DATA, false);
+                substitution.setParent(current.getParent());
+
+                if (parent != null) {
+                    if (isLeft) {
+                        parent.setLeft(substitution);
+                    } else {
+                        parent.setRight(substitution);
+                    }
+                }
+
+            }
+
+            current.setParent(null);
         }
         // 3: If the node has only one child
         // 3.1: Only has left child
-        else if (current.getRight() == null) {
+        else if (current.getRight() == null || isEmptyNode(current.getRight())) {
             oneLeftChild(parent, current, isLeft);
+            if (!current.isRed() && current.getLeft().isRed()) {
+                current.getLeft().setRed(false);
+            } else if (!current.isRed() && !current.getLeft().isRed()) {
+                substitution = current.getLeft();
+            }
         }
         // 3.2: Only has right child
-        else if (current.getLeft() == null) {
+        else if (current.getLeft() == null || isEmptyNode(current.getLeft())) {
             oneRightChild(parent, current, isLeft);
+            if (!current.isRed() && current.getRight().isRed()) {
+                current.getRight().setRed(false);
+            } else {
+                substitution = current.getRight();
+            }
         }
         // 4: If the node has two child
         else {
             // 4.1: Find the in-order successor
             RbNode successor = getSuccessor(current);
-            if (current == root) {
-                root = successor;
-            } else {
-                if (isLeft) {
-                    parent.setLeft(successor);
-                } else {
-                    parent.setRight(successor);
-                }
-            }
-            // 4.2: Reset the left of the successor
-            successor.setLeft(current.getLeft());
+
+            /*
+             * 4.2: Swap the successor and current node without copying color and changing
+             * relationship
+             */
+            RbNode tempNode = new RbNode(successor.getId(), successor.getData(), successor.isRed());
+            successor.setId(current.getId());
+            successor.setData(current.getData());
+
+            current.setId(tempNode.getId());
+            current.setData(tempNode.getData());
+
+            // 4.3: Execute delete operation again
+            delete(successor.getId());
+        }
+
+        // After the delete operation, execute balance operation
+        if (substitution != null) {
+            balanceAfterDelete(substitution);
         }
 
         return true;
+    }
+
+    public RbNode findOneNode(RbNode node, int key) {
+        if (node != null) {
+            if (node.getId() == key) {
+                return node;
+            }
+
+            RbNode tempNode = findOneNode(node.getLeft(), key);
+            if (tempNode != null) {
+                if (tempNode == tempNode.getParent().getLeft()) {
+                    isLeft = true;
+                } else {
+                    isLeft = false;
+                }
+                return tempNode;
+            }
+
+            tempNode = findOneNode(node.getRight(), key);
+            if (tempNode != null) {
+                if (tempNode == tempNode.getParent().getLeft()) {
+                    isLeft = true;
+                } else {
+                    isLeft = false;
+                }
+                return tempNode;
+            }
+        }
+        return null;
+    }
+
+    private void balanceAfterDelete(RbNode currentNode) {
+        if (currentNode.isRed()) {
+            currentNode.setRed(false);
+        } else if (currentNode.getParent() == null) {
+            currentNode.setRed(false);
+        } else if (!currentNode.isRed()) {
+            RbNode bNode = (currentNode == currentNode.getParent().getLeft()) ? currentNode.getParent().getRight()
+                    : currentNode.getParent().getLeft();
+
+            if (bNode.isRed() && currentNode == currentNode.getParent().getLeft()) {
+                bNode.setRed(currentNode.getParent().isRed());
+                currentNode.getParent().setRed(true);
+                leftRotate(currentNode.getParent());
+                balanceAfterDelete(currentNode);
+            } else if (bNode.isRed() && currentNode == currentNode.getParent().getRight()) {
+                bNode.setRed(currentNode.getParent().isRed());
+                currentNode.getParent().setRed(true);
+                rightRotate(currentNode.getParent());
+                balanceAfterDelete(currentNode);
+            } else if (bNode.isRed() && !currentNode.getParent().isRed() && (bNode.getLeft() == null || !bNode.getLeft().isRed())
+                    && (bNode.getRight() == null || !bNode.getRight().isRed())) {
+                bNode.setRed(true);
+                currentNode = currentNode.getParent();
+                balanceAfterDelete(currentNode);
+            } else if (!bNode.isRed() && currentNode.getParent().isRed() && (bNode.getLeft() == null || !bNode.getLeft().isRed())
+                    && (bNode.getRight() == null || !bNode.getRight().isRed())) {
+                bNode.setRed(true);
+                currentNode.getParent().setRed(false);
+            } else if (!bNode.isRed() && (currentNode == currentNode.getParent().getLeft())
+                    && (bNode.getLeft() != null && bNode.getLeft().isRed())
+                    && (bNode.getRight() == null || !bNode.getRight().isRed())) {
+                bNode.setRed(true);
+                bNode.getLeft().setRed(false);
+                rightRotate(bNode);
+                balanceAfterDelete(currentNode);
+            } else if (!bNode.isRed() && (currentNode == currentNode.getParent().getRight())
+                    && (bNode.getRight() != null && bNode.getRight().isRed())
+                    && (bNode.getLeft() == null || !bNode.getLeft().isRed())) {
+                bNode.setRed(true);
+                bNode.getRight().setRed(false);
+                leftRotate(bNode);
+                balanceAfterDelete(currentNode);
+            } else if (!bNode.isRed() && (currentNode == currentNode.getParent().getLeft())
+                    && (bNode.getRight() != null && bNode.getRight().isRed())) {
+                bNode.setRed(currentNode.getParent().isRed());
+                currentNode.getParent().setRed(false);
+                bNode.getRight().setRed(false);
+                leftRotate(currentNode.getParent());
+            } else if (!bNode.isRed() && (currentNode == currentNode.getParent().getRight())
+                    && (bNode.getLeft() != null && bNode.getLeft().isRed())) {
+                bNode.setRed(currentNode.getParent().isRed());
+                currentNode.getParent().setRed(false);
+                bNode.getLeft().setRed(false);
+                rightRotate(currentNode.getParent());
+            }
+        }
     }
 
     /*
@@ -374,33 +495,32 @@ public class RbTree {
      */
     public RbNode getSuccessor(RbNode deletedNode) {
         RbNode successor = deletedNode;
-        RbNode successorParent = deletedNode;
         RbNode current = deletedNode.getRight();
 
         // Find the node
         while (current != null) {
-            successorParent = successor;
+            // successorParent = successor;
             successor = current;
-            current = current.getLeft();
+            if (current.getLeft() != null && !isEmptyNode(current.getLeft())) {
+                current = current.getLeft();
+            } else {
+                current = null;
+            }
         }
-
-        // Set related value
-        if (successor != deletedNode.getRight()) {
-            successorParent.setLeft(successor.getRight());
-            successor.setRight(deletedNode.getRight());
-        }
-
         return successor;
     }
 
     public void oneRightChild(RbNode parent, RbNode current, boolean isLeft) {
         if (current == root) {
             root = current.getRight();
+            current.getRight().setParent(null);
         } else {
             if (isLeft) {
                 parent.setLeft(current.getRight());
+                current.getRight().setParent(parent);
             } else {
                 parent.setRight(current.getRight());
+                current.getRight().setParent(parent);
             }
         }
     }
@@ -408,11 +528,14 @@ public class RbTree {
     private void oneLeftChild(RbNode parent, RbNode current, boolean isLeft) {
         if (current == root) {
             root = current.getLeft();
+            current.getLeft().setParent(null);
         } else {
             if (isLeft) {
                 parent.setLeft(current.getLeft());
+                current.getLeft().setParent(parent);
             } else {
                 parent.setRight(current.getLeft());
+                current.getLeft().setParent(parent);
             }
         }
     }
@@ -427,6 +550,10 @@ public class RbTree {
                 parent.setRight(null);
             }
         }
+    }
+
+    private boolean isEmptyNode(RbNode node) {
+        return node.getId() < 0;
     }
 
     public RbNode getRoot() {

@@ -12,10 +12,11 @@ public class RbNode {
     private RbNode left;
     private RbNode right;
 
-    public RbNode(int id, int data) {
+    public RbNode(int id, int data, boolean red) {
         super();
         this.id = id;
         this.data = data;
+        this.red = red;
     }
 
     public int getId() {
