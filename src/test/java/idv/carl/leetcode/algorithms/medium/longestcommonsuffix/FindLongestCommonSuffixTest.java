@@ -1,10 +1,8 @@
-package idv.carl.datastructure;
+package idv.carl.leetcode.algorithms.medium.longestcommonsuffix;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import idv.carl.leetcode.algorithms.medium.longestcommonsuffix.FindLongestCommonSuffix;
 
 /**
  * @author Carl Lu
