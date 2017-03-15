@@ -1,0 +1,10 @@
+Insert symbol between even and odd
+
+Given a number string, please add "*" between adjacent even numbers,
+and add "-" between adjacent odd numbers, zero is not consider as event or odd.
+
+Input:
+012406563790
+
+Output:
+012*406563-7-90

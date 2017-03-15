@@ -21,7 +21,7 @@ public class SymbolBetweenEvenAndOddTest {
 
     @Test
     public void testForZero() {
-        assertEquals("01406563-7-90", SymbolBetweenEvenAndOdd.getResult("01406563790"));
+        assertEquals("012*406563-7-90", SymbolBetweenEvenAndOdd.getResult("012406563790"));
     }
 
 }
