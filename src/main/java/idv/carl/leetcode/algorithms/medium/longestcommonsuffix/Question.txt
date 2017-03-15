@@ -1,0 +1,17 @@
+Find the longest common suffix:
+
+Case1: If the longest common substring(lcs) is also a suffix, please out put it.
+
+Input:
+Cornfield, outfield
+
+Output:
+field
+
+
+Case2: If there is no lcs or the lcs is not the suffix, please out put "NULL"
+Input:
+Manhours, manhole
+
+Output:
+NULL
