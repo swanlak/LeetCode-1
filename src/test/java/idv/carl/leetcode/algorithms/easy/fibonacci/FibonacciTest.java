@@ -25,11 +25,11 @@ public class FibonacciTest {
     }
 
     /*
-    * This will failed.
-    * */
+     * This will failed.
+     */
     @Test
     public void testTimeoutForRecursiveWay() {
-        assertEquals(55, FibonacciRecursive.findFibonacci(50));
+        assertEquals(12586269025L, FibonacciRecursive.findFibonacci(50));
     }
 
     @Test
