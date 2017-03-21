@@ -18,6 +18,7 @@ public class FindLongestCommonSuffix {
 
             for (int i = 0; i < str1.length(); i++) {
                 for (int j = 0; j < str2.length(); j++) {
+                    // If the chars matched
                     if (str1.charAt(i) == str2.charAt(j)) {
                         if ((i == 0) || (j == 0)) {
                             num[i][j] = 1;
@@ -26,11 +27,20 @@ public class FindLongestCommonSuffix {
                         }
 
                         if (num[i][j] > maxLength) {
+                            // Reset the max length if the new max length is grater than the old one
                             maxLength = num[i][j];
                             int theSubStringBegin = i - num[i][j] + 1;
+                            /*
+                             * If the new detected substring is derived from the last result, just
+                             * append the char at the result
+                             */
                             if (lastSubStringBegin == theSubStringBegin) {
                                 result.append(str1.charAt(i));
                             } else {
+                                /*
+                                 * However, if the new detected substring is derived from the new
+                                 * start point, the result should be updated
+                                 */
                                 lastSubStringBegin = theSubStringBegin;
                                 result = new StringBuilder();
                                 result.append(str1.substring(lastSubStringBegin, i + 1));
