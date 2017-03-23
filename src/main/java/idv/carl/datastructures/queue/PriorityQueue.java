@@ -32,6 +32,10 @@ public class PriorityQueue {
                     break;
                 }
             }
+            /*
+             * Since we use i-- in the for loop on line 28,
+             * so here we need to add 1 for the index i.
+             */
             queue[i + 1] = element;
         }
         elementCount++;
