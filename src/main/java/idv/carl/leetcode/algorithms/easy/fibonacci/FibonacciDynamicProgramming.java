@@ -3,7 +3,7 @@ package idv.carl.leetcode.algorithms.easy.fibonacci;
 /**
  * @author Carl Lu
  */
-public class FibonacciDynamicProgramming {
+class FibonacciDynamicProgramming {
 
     /*
      * Dynamic Programming — Memoization
@@ -15,16 +15,15 @@ public class FibonacciDynamicProgramming {
      *
      * Time Complexity: O(n) , Space Complexity : O(n)
      */
-    public static long findFibonacci(int n) {
-        long fib[] = new long[n + 1];
+    static long findFibonacci(int n) {
+        long[] fib = new long[n + 1];
 
-        fib[0] = 0l;
-        fib[1] = 1l;
+        fib[0] = 0L;
+        fib[1] = 1L;
 
         for (int i = 0; i <= n; i++) {
             if (i > 1) {
                 fib[i] = fib[i - 1] + fib[i - 2];
-                // System.out.println("FibonacciRecursive " + i + ": " + fib[i]);
             }
         }
 

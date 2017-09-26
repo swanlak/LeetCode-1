@@ -15,14 +15,18 @@ public class Solution {
     }
 
     private static void calculatePermutations(List<List<Integer>> result, int[] nums, int start) {
-        if(start == nums.length - 1) {
+        /*
+         * start == nums.length - 1
+         * It means that you don't need to find out permutations.
+         */
+        if (start == nums.length - 1) {
             List<Integer> list = new LinkedList<Integer>();
             for (int i : nums) {
                 list.add(i);
             }
             result.add(list);
         } else {
-            for(int i = start; i < nums.length; i++) {
+            for (int i = start; i < nums.length; i++) {
                 swap(nums, i, start);
                 calculatePermutations(result, nums, start + 1);
                 swap(nums, i, start);

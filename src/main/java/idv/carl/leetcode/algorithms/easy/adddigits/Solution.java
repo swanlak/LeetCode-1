@@ -5,13 +5,16 @@ package idv.carl.leetcode.algorithms.easy.adddigits;
  */
 public class Solution {
 
-    public static int addDigits(int num) {
-        return (num - 1) % 9 + 1;
+    /*
+    * Recursive solution
+    * */
+    public static void main(String[] args) {
+        int number = 1367;
+        System.out.println("Result: " + addDigits(number));
     }
 
-    public static void main(String args[]) {
-        int number = 438758937;
-        System.out.println("The digital root of " + number + " is: " + addDigits(number));
+    private static int addDigits(int input) {
+        return input < 10 ? input : input % 10 + addDigits(input / 10);
     }
 
 }

@@ -1,10 +1,10 @@
 package idv.carl.leetcode.algorithms.easy.fibonacci;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Carl Lu
