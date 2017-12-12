@@ -5,20 +5,20 @@ package idv.carl.leetcode.algorithms.easy.plusone;
  */
 public class Solution {
 
-    public static int[] plusOne(int[] input) {
-        for (int i = input.length - 1; i >= 0; i--) {
-            int currentDigit = input[i];
+    public static int[] plusOne(int[] number) {
+        for (int i = number.length - 1; i >= 0; i--) {
+            int currentDigit = number[i];
             if (currentDigit < 9) {
-                input[i] = currentDigit + 1;
-                return input;
+                number[i] = currentDigit + 1;
+                return number;
             } else {
-                input[i] = 0;
+                number[i] = 0;
             }
         }
 
-        int[] extendedResult = new int[input.length + 1];
-        extendedResult[0] = 1;
-        return extendedResult;
+        int[] increasedNumber = new int[number.length + 1];
+        increasedNumber[0] = 1;
+        return increasedNumber;
     }
 
 }

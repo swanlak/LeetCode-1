@@ -35,4 +35,14 @@ public class PlusOneTest {
         assertEquals(Arrays.toString(expected), Arrays.toString(actual));
     }
 
+    @Test
+    public void testPlusOneForNegativeNumberCase1() {
+        // -10
+    }
+
+    @Test
+    public void testPlusOneForNegativeNumberCase2() {
+        // -23
+    }
+    
 }
