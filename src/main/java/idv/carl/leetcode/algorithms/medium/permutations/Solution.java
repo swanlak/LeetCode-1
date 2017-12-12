@@ -9,7 +9,7 @@ import java.util.List;
 public class Solution {
 
     public static List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> result = new LinkedList<List<Integer>>();
+        List<List<Integer>> result = new LinkedList<>();
         calculatePermutations(result, nums, 0);
         return result;
     }
@@ -20,7 +20,7 @@ public class Solution {
          * It means that you don't need to find out permutations.
          */
         if (start == nums.length - 1) {
-            List<Integer> list = new LinkedList<Integer>();
+            List<Integer> list = new LinkedList<>();
             for (int i : nums) {
                 list.add(i);
             }
@@ -41,7 +41,7 @@ public class Solution {
     }
 
     public static void main(String args[]) {
-        int[] input = new int[] {1, 2, 3, 4, 5};
+        int[] input = new int[] {1, 2, 3};
         for (List<Integer> list : permute(input)) {
             for (Integer i : list) {
                 System.out.print(i + " ");
