@@ -1,2 +1,13 @@
 Plus One:
 
+Given a number which might be non-negative/negative and present it in the form of int array, for example:
+
+* non-negative number: 9487 -> [9, 4, 8, 7]
+* negative number: -400 -> [-4, 0, 0]
+
+Please implement a method which will increment the number by 1 each time and keep the content of the array is correct, such as:
+
+9487 plus one: [9, 4, 8, 8]
+-400 plus one: [-3, 9, 9]
+
+Please consider some edge cases.

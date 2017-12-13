@@ -36,13 +36,51 @@ public class PlusOneTest {
     }
 
     @Test
+    public void testPlusOneForNonNegativeNumberCase4() {
+        int[] input = new int[] {0};
+        int[] expected = new int[] {1};
+        int[] actual = Solution.plusOne(input);
+        assertEquals(Arrays.toString(expected), Arrays.toString(actual));
+    }
+
+    @Test
     public void testPlusOneForNegativeNumberCase1() {
-        // -10
+        int[] input = new int[] {-1, 0};
+        int[] expected = new int[] {-9};
+        int[] actual = Solution.plusOne(input);
+        assertEquals(Arrays.toString(expected), Arrays.toString(actual));
     }
 
     @Test
     public void testPlusOneForNegativeNumberCase2() {
-        // -23
+        int[] input = new int[] {-2, 3};
+        int[] expected = new int[] {-2, 2};
+        int[] actual = Solution.plusOne(input);
+        assertEquals(Arrays.toString(expected), Arrays.toString(actual));
     }
-    
+
+    @Test
+    public void testPlusOneForNegativeNumberCase3() {
+        int[] input = new int[] {-1, 0, 0, 0};
+        int[] expected = new int[] {-9, 9, 9};
+        int[] actual = Solution.plusOne(input);
+        assertEquals(Arrays.toString(expected), Arrays.toString(actual));
+    }
+
+    @Test
+    public void testPlusOneForNegativeNumberCase4() {
+        int[] input = new int[] {-4, 0, 0};
+        int[] expected = new int[] {-3, 9, 9};
+        int[] actual = Solution.plusOne(input);
+        assertEquals(Arrays.toString(expected), Arrays.toString(actual));
+    }
+
+    @Test
+    public void testPlusOneForNegativeNumberCase5() {
+        int[] input = new int[] {-6, 9, 9, 9};
+        int[] expected = new int[] {-6, 9, 9, 8};
+        int[] actual = Solution.plusOne(input);
+        assertEquals(Arrays.toString(expected), Arrays.toString(actual));
+    }
+
 }
