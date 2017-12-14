@@ -6,7 +6,6 @@ package idv.carl.leetcode.algorithms.easy.plusone;
 public class Solution {
 
     public static int[] plusOne(int[] number) {
-
         boolean isNegative = number[0] < 0;
 
         for (int i = number.length - 1; i >= 0; i--) {
