@@ -1,4 +1,4 @@
-package idv.carl.leetcode.algorithms.medium.permutations;
+package idv.carl.leetcode.algorithms.medium.permutation.easy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
