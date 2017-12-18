@@ -1,0 +1,6 @@
+Permutations:
+
+Please implement how to output a permutation of "n" number of given elements in all cases.
+
+Input example: data = {'a', 'b', 'c'}
+Output example: aaa, aab, aac, aba, abb, abc, ..., cca, ccb, ccc
