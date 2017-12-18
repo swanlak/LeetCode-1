@@ -1,0 +1,13 @@
+Reverse Integer:
+
+Reverse digits of an integer.
+The input is assumed to be a 32-bit signed integer.
+Your function should return 0 when the reversed integer overflows.
+
+Example1: x = 123, return 321
+Example2: x = -123, return -321
+
+32-bit unsigned integer: 0 ~ (2^32) - 1 (0 ~ 4,294,967,295)
+32-bit signed integer: -(2^31) ~ (2^31) - 1 (-2,147,483,648 ~ 2,147,483,647)
+2,147,483,647 + 1 = -2,147,483,648 (overflow後繞回最小值)
+-2,147,483,648 - 2 = 2,147,483,646 (overflow後繞回最大值 - 1)
