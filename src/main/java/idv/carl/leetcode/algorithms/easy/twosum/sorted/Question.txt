@@ -1,0 +1,13 @@
+Two Sum
+
+Given an array of integers, return indices of the two numbers such that
+they add up to specific target. You may assume that each input would have
+exactly one solution, and you may not use the same element twice.
+
+Note: The input array is already sorted in ascending order.
+
+Example:
+
+Given
+nums = [2, 7, 4, 3], target = 9
+Sunce num[0] + num[1] = 2 + 7 = 9, return [0, 1]
