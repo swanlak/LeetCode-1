@@ -1,4 +1,4 @@
-package idv.carl.leetcode.algorithms.easy.palindrome;
+package idv.carl.leetcode.algorithms.easy.palindrome.number;
 
 import idv.carl.leetcode.algorithms.easy.palindrome.number.Solution;
 import org.junit.Test;
