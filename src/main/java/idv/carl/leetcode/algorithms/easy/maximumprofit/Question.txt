@@ -1,0 +1,9 @@
+Given an array of stock prices for a day like:
+
+int[] stock_prices_yesterday = {10, 7, 5, 8, 11, 9};
+
+Write a program to calculate the maximum possible profit trading this stock in a day.
+1. You can only sell what you bought previously (no short selling)
+2. You can only buy and sell once
+
+In above example, the expected output is 6 (since we can buy at 5 and sell at 11)
