@@ -1,0 +1,15 @@
+Implement atoi function:
+
+Implement atoi to convert a string to an integer.
+(In java: Integer.parseInt())
+
+Example:
+"1" => 1
+"-10" => -10
+
+Additional Restrictions:
+1. If the input string is not an integer -> return 0
+2. If the input string contains both integer and non-integer value, all the non-integer value will only appear after the integer
+3. Overflow: If the value is positive, return Integer.MAX_VALUE, otherwise, return Integer.MIN_VALUE
+4. There might have spaces at the start or the end of the input
+5. There might have +/- sign in the input (+100/-22...)
