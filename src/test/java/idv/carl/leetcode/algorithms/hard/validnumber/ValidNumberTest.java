@@ -67,6 +67,13 @@ public class ValidNumberTest {
     }
 
     @Test
+    public void testDigitStartWithPoint() {
+        String input = " .87 ";
+        assertTrue(Solution.isValidNumber(input));
+        assertTrue(RefactorSolution.isValidNumber(input));
+    }
+
+    @Test
     public void testNonNumericCharacters() {
         String input = "abc";
         assertFalse(Solution.isValidNumber(input));
