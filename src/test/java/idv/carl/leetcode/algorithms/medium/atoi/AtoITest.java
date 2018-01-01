@@ -100,4 +100,11 @@ public class AtoITest {
         assertEquals(expected, Solution.aToI(input));
     }
 
+    @Test
+    public void testComplexCase() {
+        String input = " -948794879487948794879487WTF ";
+        int expected = Integer.MIN_VALUE;
+        assertEquals(expected, Solution.aToI(input));
+    }
+
 }

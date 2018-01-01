@@ -8,6 +8,10 @@ public class Solution {
     private final static int MAX_32_BIT_INTEGER = ( (int) Math.pow(2, 31) ) - 1;
     private final static int MIN_32_BIT_INTEGER = -(int) Math.pow(2, 31);
 
+    /*
+     * Time Complexity: O(log n)
+     * Space Complexity: O(log n)
+     */
     public static int reverseInteger(int input) {
         boolean isNegative = false;
         if (input < 0) {
@@ -32,11 +36,14 @@ public class Solution {
         return result;
     }
 
+    /*
+     * Time Complexity: O(log n)
+     * Space Complexity: O(1)
+     */
     public static int optimizedReverseInteger(int input) {
         int result = 0;
 
         while (input != 0) {
-
             if (result > MAX_32_BIT_INTEGER / 10 || result < MIN_32_BIT_INTEGER / 10 || ( result == MAX_32_BIT_INTEGER / 10 && (
                     input % 10 > 7 ) ) || result == MIN_32_BIT_INTEGER / 10 && ( input % 10 < -8 )) {
                 return 0;
