@@ -1,0 +1,25 @@
+Valid Number
+
+Validate if a given string is numeric.
+
+Example:
+"0" => true
+" 0.1 " => true
+"abc" => false
+"1 a" => false
+"2e10" => true (2 * 10^10)
+"2e+10" => true (2 * 10^10)
+"2e-10" => true (2 * 10^(-10))
+"2e" => false
+"2e+" => false
+"2e-" => false
+"e2" => false
+
+Please consider all the following situations:
+1. 頭尾空白字元 => 需處理
+2. 小數點 => 需處理
+3. 科學記號 => 需處理
+4. string同時包含數字與其它字元 => return false
+5. 正負號 => 需處理
+6. 非十進位數字(e.g.: 0xFF) => return false
+7. 兩數字中間有空白 => return false
