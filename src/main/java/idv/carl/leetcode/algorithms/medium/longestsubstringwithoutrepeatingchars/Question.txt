@@ -1,0 +1,26 @@
+Longest Substring Without Repeating Characters
+
+Given a string, find the length of the longest substring without repeating characters.
+
+Example:
+
+Given "abcabcbb", the answer is "abc", which the length is 3.
+
+Given "bbbbb", the answer is "b", with the length of 1.
+
+Given "pwwkew", the answer is "wke", with the length of 3.
+
+
+Concept:
+ASCII Code
+-> 用數字表示字元的協定
+-> Standard ASCII characters(0-127)
+-> Extended ASCII characters(128-255)
+-> 即完整共有0-255, 共256個字元.
+-> http://www.flexcomm.com/library/ASCII256.htm
+-> ASCII Code的特性之一就是: 在英文的世界裡, 所有的字元都可以透過ASCII Code轉換成一個數字.
+
+Solution(迭代):
+檢查當前字元是否出現過
+-> 未出現過, 表示可繼續更新當前substring的長度.
+-> 已出現過, 表示當前的sub string應該要被終止了, 並計算其和其他substring之長度相較之下是否比較長, 並重新設定substring起點.
