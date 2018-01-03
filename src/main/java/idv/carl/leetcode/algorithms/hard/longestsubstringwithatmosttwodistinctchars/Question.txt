@@ -1,0 +1,7 @@
+Longest Substring with At Most N Distinct Characters
+
+Given a string S, find the length of the longest substring T that contains at most N distinct characters, where N is an integer grater than zero.
+
+Example:
+
+Given S = "eceba", T is "ece", N = 2, length is 3.
