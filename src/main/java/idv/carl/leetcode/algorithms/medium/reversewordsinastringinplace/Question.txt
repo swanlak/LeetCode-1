@@ -1,0 +1,10 @@
+Reverse words in a string in place
+
+Given an input string, reverse the string word by word.
+The input string does not contain leading or trailing spaces
+and the words are always separated by a single space.
+Please do it in-place without allocating extra space.
+
+Example:
+
+Given s = "Que pa so", return "so pa Que"
