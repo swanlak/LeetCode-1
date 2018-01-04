@@ -27,4 +27,13 @@ public class ReverseWordsTest {
         assertEquals(expected, Solution.reverseWordsByPointers(input));
     }
 
+    @Test
+    public void testNormalCaseWithSpaces() {
+        String input = " Que pa so ";
+        String expected = "so pa Que";
+        assertEquals(expected, Solution.reverseWordsByStringApi(input));
+        assertEquals(expected, Solution.reverseWordsByLambdaApi(input));
+        assertEquals(expected, Solution.reverseWordsByPointers(input));
+    }
+
 }
