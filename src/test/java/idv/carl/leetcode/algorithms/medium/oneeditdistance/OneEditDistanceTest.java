@@ -38,6 +38,13 @@ public class OneEditDistanceTest {
     }
 
     @Test
+    public void testOneEditDistanceWithMismatchContent() {
+        String inputA = "abcdede";
+        String inputB = "abcdceee";
+        assertFalse(Solution.isOneEditDistance(inputA, inputB));
+    }
+
+    @Test
     public void testOneEditDistanceWithRecursiveMechanism() {
         String inputA = "abdc";
         String inputB = "adc";
