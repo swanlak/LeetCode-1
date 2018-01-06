@@ -1,0 +1,12 @@
+One Edit Distance
+
+Given two string S and T, determine if they are both one edit distance apart.
+
+Example:
+S="abcd", T="abc" => true
+
+In the implementation, you should consider the following four situations:
+
+    Situation1   Situation2   Situation3   Situation4
+S:    "abc"        "abc"        "abbde"      "adc"
+T:    "abc"        "abcd"       "abcde"      "abdc"
