@@ -1,0 +1,13 @@
+Read N Characters Given Read4 - Call multiple times
+
+The API: int read4(char[] buf) read 4 characters at a time from a file.
+The return value is the actual number of characters read. For example,
+it return 3 if there is only 3 characters left in the file.
+By using the read4 API, implement the function int read(char[] buf, int n) that
+reads n characters from the file.
+
+Note: The read function may be called multiple times.
+
+Example:
+File: 12345678, n = 7 => return 7
+File: 1234, n = 7 => return 4
