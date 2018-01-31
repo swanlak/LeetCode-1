@@ -1,0 +1,11 @@
+Has pair with sum in unsorted array
+
+Given an unsorted array and an int sum, please check the sum can be compose by any two numbers in the array or not.
+Notice that the numbers in the array can appear for more than one time.
+
+Example:
+
+[3, 9, 1, 2], Sum = 8 => no
+
+[3, 94, 22, 88, 1, 77, 4, 87, 4], Sum = 8 => yes
+
