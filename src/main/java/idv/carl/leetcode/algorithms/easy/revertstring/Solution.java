@@ -5,8 +5,10 @@ package idv.carl.leetcode.algorithms.easy.revertstring;
  */
 public class Solution {
 
-    public static void main(String args[]) {
-        String input = "Hello World";
+    public static String revertStringIteratively(String input) {
+        if (null == input || input.length() <= 1) {
+            return input;
+        }
 
         char[] inputArray = input.toCharArray();
         int from = 0;
@@ -21,7 +23,14 @@ public class Solution {
             from++;
         }
 
-        System.out.println(new String(inputArray));
+        return new String(inputArray);
     }
 
+    public static String revertStringRecursively(String input) {
+        if (null == input || input.length() <= 1) {
+            return input;
+        }
+
+        return revertStringRecursively(input.substring(1)) + input.charAt(0);
+    }
 }
