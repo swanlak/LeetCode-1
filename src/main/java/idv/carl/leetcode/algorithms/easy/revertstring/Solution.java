@@ -33,4 +33,23 @@ public class Solution {
 
         return revertStringRecursively(input.substring(1)) + input.charAt(0);
     }
+
+    public static char[] revertStringRecursivelyInHalfTime(char[] input, int from, int to) {
+        if (null == input || input.length <= 1) {
+            return input;
+        }
+
+        if (from < to) {
+            swap(input, from, to);
+            revertStringRecursivelyInHalfTime(input, ++from, --to);
+        }
+
+        return input;
+    }
+
+    private static void swap(char[] input, int from, int to) {
+        char tmp = input[from];
+        input[from] = input[to];
+        input[to] = tmp;
+    }
 }

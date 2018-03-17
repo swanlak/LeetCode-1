@@ -27,6 +27,14 @@ public class RevertStringTest {
     }
 
     @Test
+    public void testRevertStringRecursivelyInHalfTime() {
+        String expected = "oSaPeuQ";
+        String input = "QuePaSo";
+        String actual = new String(Solution.revertStringRecursivelyInHalfTime(input.toCharArray(), 0, input.length() - 1));
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void testRevertStringIterativelyWithNullString() {
         assertNull(Solution.revertStringIteratively(null));
     }
@@ -48,6 +56,19 @@ public class RevertStringTest {
         String expected = "Q";
         String input = "Q";
         assertEquals(expected, Solution.revertStringRecursively(input));
+    }
+
+    @Test
+    public void testRevertStringRecursivelyInHalfTimeWithNullString() {
+        assertNull(Solution.revertStringRecursivelyInHalfTime(null, 0, 0));
+    }
+
+    @Test
+    public void testRevertStringRecursivelyInHalfTimeWithSingleCharInput() {
+        String expected = "Q";
+        String input = "Q";
+        assertEquals(expected,
+                new String(Solution.revertStringRecursivelyInHalfTime(input.toCharArray(), 0, input.length() - 1)));
     }
 
 }
