@@ -81,6 +81,10 @@ public class LinkedList {
         return deleted;
     }
 
+    /*
+     * Reverse list in pictures:
+     * https://docs.google.com/presentation/d/1RoaxGeyS24QhJg5TZqKCZ3eljIC-wT2jlNsjcZjWb-g/edit#slide=id.p
+     * */
     private LinkedNode reverseList(LinkedNode node) {
         LinkedNode previous = null;
         LinkedNode current = node;
