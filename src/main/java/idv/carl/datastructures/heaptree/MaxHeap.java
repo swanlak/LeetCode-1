@@ -28,12 +28,12 @@ public class MaxHeap {
          * beginIndex: The first one non-leaf node
          *
          * Remember that we don't need to start from the last leaf node,
-         * just start from the first one non-lead node.
+         * just start from the first one non-leaf node.
          *
          * Since we can see a leaf node as a qualified node, the root node is itself.
          */
         int len = data.length - 1;
-        int beginIndex = (len - 1) >> 1;
+        int beginIndex = ( len - 1 ) >> 1;
         for (int i = beginIndex; i >= 0; i--) {
             maxHeapify(i, len);
         }
@@ -63,7 +63,7 @@ public class MaxHeap {
          * index of right node, left index + 1
          * max index of the successor, by default, it's left node
          */
-        int left = (index << 1) + 1;
+        int left = ( index << 1 ) + 1;
         int right = left + 1;
         int maxSuccessor = left;
 
